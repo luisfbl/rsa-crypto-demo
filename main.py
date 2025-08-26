@@ -43,7 +43,7 @@ def menu():
             inpt = input('Usar chaves personalizadas? (Y/n): ').lower()
             if inpt == 'y':
                 pub_b64 = input("Digite a chave pública (em base64): ")
-                pub_key = RSA.import_key(b64decode(pub_b64))
+                pub_key = b64decode(pub_b64)
 
             encrypted = rsa.encode(message, pub_key)
 
@@ -55,7 +55,7 @@ def menu():
 
             if inpt == 'y':
                 priv_b64 = input("Digite a chave privada (em base64): ")
-                priv_key = RSA.import_key(b64decode(priv_b64))
+                priv_key = b64decode(priv_b64)
 
             decrypted = rsa.decode(last_encrypted, priv_key)
             print(f"Texto decriptado: {decrypted}")
