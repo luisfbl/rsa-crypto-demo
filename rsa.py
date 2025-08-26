@@ -9,9 +9,13 @@ def generate_keys(bits=2048):
     return private_key, public_key
 
 def encode(message, public_key):
+    if isinstance(public_key, bytes):
+        public_key = RSA.import_key(public_key)
     cipher = PKCS1_OAEP.new(public_key)
     return cipher.encrypt(message)
 
 def decode(message, private_key):
+    if isinstance(private_key, bytes):
+        private_key = RSA.import_key(private_key)
     cipher = PKCS1_OAEP.new(private_key)
     return cipher.decrypt(message).decode()
